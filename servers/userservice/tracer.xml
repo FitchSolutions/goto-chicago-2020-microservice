@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='utf-8'?>
+<tracer id="junit" runId="&lt;no id&gt;">
+  <classes></classes>
+  <methods></methods>
+  <messages>
+    <message>No calls were registered during tests run.</message>
+  </messages>
+</tracer>

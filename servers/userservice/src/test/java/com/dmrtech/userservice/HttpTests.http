@@ -1,0 +1,154 @@
+# For a quick start check out our HTTP Requests collection (Tools|HTTP Client|Open HTTP Requests Collection) or
+# paste cURL into the file and request will be converted to HTTP Request format.
+#
+# Following HTTP Request Live Templates are available:
+# * 'gtrp' and 'gtr' create a GET request with or without query parameters;
+# * 'ptr' and 'ptrp' create a POST request with a simple or parameter-like body;
+# * 'mptr' and 'fptr' create a POST request to submit a form with a text or file field (multipart/form-data);
+
+POST http://localhost:9000/api/auth/signup
+Content-Type: application/json
+
+{
+  "username": "user1",
+  "email": "test@test.com",
+  "password": "12345678"
+}
+
+
+###
+
+POST http://localhost:9000/api/auth/signup
+Content-Type: application/json
+
+{
+  "username": "user2",
+  "email": "test@testuser2.com",
+  "password": "12345678"
+}
+
+
+###
+POST http://localhost:9000/api/auth/signin
+Content-Type: application/json
+
+{
+  "username": "user2",
+  "password": "12345678"
+}
+
+> {%
+  client.test("Request executed successfully", function() {
+        client.assert(response.status === 200, "Response status is not 200");
+        client.assert(response.body.accessToken.length() > 0, "Response does not contain an access token");
+        client.global.set( "AUTH_TOKEN", response.body.accessToken);
+    });
+%}
+
+###
+
+GET http://localhost:9001/api/calendaritems/
+Accept: application/json
+
+###
+
+GET http://localhost:9001/api/calendaritems/
+Accept: application/json
+Authorization: Bearer {{AUTH_TOKEN}}
+
+###
+
+DELETE http://localhost:9001/api/calendaritems/5
+Accept: application/json
+Authorization: Bearer {{AUTH_TOKEN}}
+
+###
+
+PUT http://localhost:9001/api/calendaritems/1
+Authorization: Bearer {{AUTH_TOKEN}}
+Content-Type: application/json
+
+{"title":"test addoueaeu","date":"2020-03-13T02:29:52.710Z","completed":false}
+
+###
+POST http://localhost:9001/api/calendaritems/
+Authorization: Bearer {{AUTH_TOKEN}}
+Content-Type: application/json
+
+  {
+    "allDayEvent": false,
+    "title": "Write introduction",
+    "details": "Write introduction | Write introduction | Write introduction",
+    "date": "2020-01-02T02:16:41.893+0000"
+  }
+
+###
+POST http://localhost:9001/api/calendaritems/
+Authorization: Bearer {{AUTH_TOKEN}}
+Content-Type: application/json
+
+  {
+    "allDayEvent": false,
+    "title": "Create Sample App",
+    "details": "Create Sample App | Create Sample App | Create Sample App",
+    "date": "2020-02-02T02:16:41.893+0000"
+  }
+
+###
+POST http://localhost:9001/api/calendaritems/
+Authorization: Bearer {{AUTH_TOKEN}}
+Content-Type: application/json
+
+  {
+    "allDayEvent": false,
+    "title": "Introduce Kafka",
+    "details": "Introduce Kafka | Introduce Kafka | Introduce Kafka",
+    "date": "2020-03-02T02:16:41.893+0000"
+  }
+
+###
+POST http://localhost:9001/api/calendaritems/
+Authorization: Bearer {{AUTH_TOKEN}}
+Content-Type: application/json
+  {
+    "allDayEvent": false,
+    "title": "Study Vue.js",
+    "details": "Study Vue.js | Study Vue.js | Study Vue.js",
+    "date": "2020-04-02T01:16:41.893+0000"
+  }
+
+###
+POST http://localhost:9001/api/calendaritems/
+Authorization: Bearer {{AUTH_TOKEN}}
+Content-Type: application/json
+
+{
+    "allDayEvent": false,
+    "title": "Present at GOTO",
+    "details": "Present at GOTO",
+    "date": "2020-05-01T01:16:41.893+0000"
+  }
+
+
+###
+POST http://localhost:9001/api/calendaritems/
+Authorization: Bearer {{AUTH_TOKEN}}
+Content-Type: application/json
+
+{"title":"hello worldu","date":"2020-03-13T02:29:52.710Z","completed":false}
+
+###
+
+GET http://localhost:9000/users/
+Authorization: Bearer {{AUTH_TOKEN}}
+Content-Type: application/json
+
+###
+
+GET http://localhost:9000/users/1
+Authorization: Bearer {{AUTH_TOKEN}}
+Content-Type: application/json
+
+###
+
+
